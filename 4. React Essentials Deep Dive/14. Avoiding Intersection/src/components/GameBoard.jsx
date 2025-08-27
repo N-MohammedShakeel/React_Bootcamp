@@ -4,16 +4,11 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-export default function GameBoard({ onSelectSquare, turns }) {
-  let gameBoard = initialGameBoard;
-
-  for (const turn of turns) {
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    gameBoard[row][col] = player;
-  }
-
+export default function GameBoard({ onSelectSquare }) {
+  // **Removed Local State**
+  // - Local `gameBoard` state is commented out to avoid intersection with App’s `gameTurns` state.
+  // - **Why?** Managing board state in GameBoard could conflict with App’s turn tracking, leading to inconsistent UI updates.
+  // - Instead, GameBoard relies on App to manage game state, receiving `onSelectSquare` to trigger updates.
   // const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
   // function handleSelectSquare(rowIndex, colIndex) {
@@ -22,7 +17,6 @@ export default function GameBoard({ onSelectSquare, turns }) {
   //     updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
   //     return updatedBoard;
   //   });
-
   //   onSelectSquare();
   // }
 
@@ -33,7 +27,10 @@ export default function GameBoard({ onSelectSquare, turns }) {
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
-                <button onClick={() => onSelectSquare(rowIndex, colIndex)}>{playerSymbol}</button>
+                {/* **Simplified Button**
+                    - Button uses `onSelectSquare` directly, passing control to App’s state management.
+                    - `playerSymbol` is not yet dynamic (requires `gameTurns` data to derive board state). */}
+                <button onClick={onSelectSquare}>{playerSymbol}</button>
               </li>
             ))}
           </ol>
