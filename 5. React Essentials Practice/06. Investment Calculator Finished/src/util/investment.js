@@ -4,6 +4,13 @@
 // - annualInvestment: The amount invested every year
 // - expectedReturn: The expected (annual) rate of return
 // - duration: The investment duration (time frame)
+
+// **Purpose**: Utility functions for calculating investment results and formatting currency.
+
+// **Investment Calculation**
+// - Takes `input` object with investment parameters.
+// - Computes annual results (year, interest, value) using compound interest formula.
+// - Returns array of yearly data for `Results` component.
 export function calculateInvestmentResults({
   initialInvestment,
   annualInvestment,
@@ -17,22 +24,21 @@ export function calculateInvestmentResults({
     const interestEarnedInYear = investmentValue * (expectedReturn / 100);
     investmentValue += interestEarnedInYear + annualInvestment;
     annualData.push({
-      year: i + 1, // year identifier
-      interest: interestEarnedInYear, // the amount of interest earned in this year
-      valueEndOfYear: investmentValue, // investment value at end of year
-      annualInvestment: annualInvestment, // investment added in this year
+      year: i + 1,
+      interest: interestEarnedInYear,
+      valueEndOfYear: investmentValue,
+      annualInvestment: annualInvestment,
     });
   }
 
   return annualData;
 }
 
-// The browser-provided Intl API is used to prepare a formatter object
-// This object offers a "format()" method that can be used to format numbers as currency
-// Example Usage: formatter.format(1000) => yields "$1,000"
-export const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
+// **Currency Formatter**
+// - Uses `Intl.NumberFormat` to format numbers as USD currency (e.g., $1,000).
+export const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
   minimumFractionDigits: 0,
   maximumFractionDigits: 0,
 });

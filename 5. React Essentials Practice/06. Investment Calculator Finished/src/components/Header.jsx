@@ -1,4 +1,6 @@
-import logo from '../assets/investment-calculator-logo.png';
+// **Purpose**: Renders the app’s header with a logo and title.
+// - Simple presentational component, no state or props, enhancing modularity.
+import logo from "../assets/investment-calculator-logo.png";
 
 export default function Header() {
   return (
