@@ -5,26 +5,16 @@ const initialGameBoard = [
 ];
 
 export default function GameBoard({ onSelectSquare, turns }) {
+  // **Deriving Board State**
+  // - `gameBoard` is derived from `turns` prop, avoiding local state to reduce complexity.
+  // - Loops through `turns` to update a copy of `initialGameBoard` with player symbols.
   let gameBoard = initialGameBoard;
 
   for (const turn of turns) {
     const { square, player } = turn;
     const { row, col } = square;
-
     gameBoard[row][col] = player;
   }
-
-  // const [gameBoard, setGameBoard] = useState(initialGameBoard);
-
-  // function handleSelectSquare(rowIndex, colIndex) {
-  //   setGameBoard((prevGameBoard) => {
-  //     const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-  //     updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
-  //     return updatedBoard;
-  //   });
-
-  //   onSelectSquare();
-  // }
 
   return (
     <ol id="game-board">
@@ -33,6 +23,10 @@ export default function GameBoard({ onSelectSquare, turns }) {
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
+                {/* **Disabling Buttons**
+                    - `disabled={playerSymbol !== null}` prevents clicking already-filled squares.
+                    - Ensures valid gameplay by blocking redundant moves.
+                    - `onClick` triggers `onSelectSquare` to update `gameTurns` in App. */}
                 <button
                   onClick={() => onSelectSquare(rowIndex, colIndex)}
                   disabled={playerSymbol !== null}
