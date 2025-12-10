@@ -61,9 +61,9 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            // **Button Interactions** // - Each TabButton passes a unique value
-            to `handleSelect` via `onSelect`. // - Clicking updates
-            `selectedTopic`, triggering re-render with new `tabContent`.
+            {/* **Button Interactions** 
+            // - Each TabButton passes a unique value to `handleSelect` via `onSelect`. 
+            // - Clicking updates `selectedTopic`, triggering re-render with new `tabContent`. */}
             <TabButton onSelect={() => handleSelect("components")}>
               Components
             </TabButton>
@@ -71,8 +71,8 @@ function App() {
             <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          // **Rendering Conditional Content** // - `{tabContent}` displays the
-          JSX from `tabContent`, updated based on `selectedTopic`.
+          {/* **Rendering Conditional Content** 
+          // - `{tabContent}` displays the JSX from `tabContent`, updated based on `selectedTopic`. */}
           {tabContent}
         </section>
       </main>

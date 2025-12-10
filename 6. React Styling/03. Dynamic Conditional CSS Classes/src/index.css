@@ -1,0 +1,116 @@
+/* Using CSS Classes:
+   - Classes allow reusable styling across multiple elements.
+   - They keep styles separate from component logic.
+   - Useful for consistent UI, hover states, layout, spacing, colors.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  /* Background set globally using CSS instead of inline styles */
+  background-color: #ffaa00;
+  background-image: url("data:image/svg+xml,%3Csvg ... %3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  line-height: inherit;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Class-based styling for container layout */
+#auth-inputs {
+  width: 100%;
+  max-width: 28rem;
+  padding: 2rem;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  background: linear-gradient(180deg, #474232 0%, #28271c 100%);
+  color: white;
+}
+
+/* Class used for grouping inputs - better reuse than inline styles */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.controls label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.controls input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  line-height: 1.5;
+  background-color: #d1d5db;
+  color: #374151;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Classes for error styling instead of inline styles */
+.label.invalid {
+  color: #f87171;
+}
+
+input.invalid {
+  color: #ef4444;
+  border-color: #f73f3f;
+  background-color: #fed2d2;
+}
+
+/* Class for grouping action buttons */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+/* Reusable button style */
+.button {
+  padding: 1rem 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 6px;
+  color: #1f2937;
+  background-color: #f0b322;
+  border: none;
+}
+
+.button:hover {
+  background-color: #f0920e;
+}
+
+/* Secondary button using another class */
+.text-button {
+  color: #f0b322;
+  border: none;
+}
+
+.text-button:hover {
+  color: #f0920e;
+}

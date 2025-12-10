@@ -19,18 +19,23 @@ const todos = [
 ];
 
 const tasks = todos.map((todo) => todo.task); // map
+// output : ["Learn JS", "Learn React", "Practice ES6"]
 const pending = todos.filter((todo) => !todo.done); // filter
+// output : [{ id: 2, task: "Learn React", done: false }, { id: 3, task: "Practice ES6", done: false }]
 const completedCount = todos.reduce(
   (acc, todo) => acc + (todo.done ? 1 : 0),
   0
 ); // reduce
+// output : 2
 const sortedTodos = [...todos].sort((a, b) => a.task.localeCompare(b.task)); // sort
+// output : sorted array by task name
 
 // === 4. Functions & Arrow Functions ===
 const add = (a, b) => a + b; // arrow function
 console.log("Sum:", add(5, 7));
 
-// Closure Example
+// Closure Example , this code creates a counter function,
+// simply closure concept is that an inner function has access to variables defined in an outer function even after the outer function has finished executing.
 function counter() {
   let count = 0;
   return () => ++count; // closure remembers "count"
@@ -58,13 +63,17 @@ console.log(profile.user?.info?.email); // "alice@mail.com"
 console.log(profile.user?.address?.city); // undefined (safe)
 
 // === 8. Promises & Async/Await ===
+
+// Here, we create a delay function that returns a Promise which resolves after a specified number of milliseconds.
+// res
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 delay(1000).then(() => console.log("1 second passed (Promise then)"));
 
 async function fetchUser() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users/1");
-  const data = await res.json();
+  // async function is used to wait for asynchronous operations to complete before proceeding.
+  const res = await fetch("https://jsonplaceholder.typicode.com/users/1"); // await pauses until fetch completes
+  const data = await res.json(); // await pauses until json parsing completes
   console.log("Fetched user:", data.name);
 }
 fetchUser();

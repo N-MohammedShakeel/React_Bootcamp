@@ -6,12 +6,7 @@ import { calculateInvestmentResults, formatter } from "../util/investment.js";
 export default function Results({ input }) {
   // **Derived Data**
   // - Calls `calculateInvestmentResults` to compute annual investment data from `input`.
-  // - `initialInvestment` is calculated for use in deriving total interest and invested capital.
   const resultsData = calculateInvestmentResults(input);
-  const initialInvestment =
-    resultsData[0].valueEndOfYear -
-    resultsData[0].interest -
-    resultsData[0].annualInvestment;
 
   return (
     <table id="result">
@@ -31,11 +26,9 @@ export default function Results({ input }) {
             - Uses `formatter` to display values as currency.
             - `key={yearData.year}` ensures efficient rendering. */}
         {resultsData.map((yearData) => {
-          const totalInterest =
-            yearData.valueEndOfYear -
-            yearData.annualInvestment * yearData.year -
-            initialInvestment;
-          const totalAmountInvested = yearData.valueEndOfYear - totalInterest;
+          const totalAmountInvested =
+            input.initialInvestment + yearData.annualInvestment * yearData.year;
+          const totalInterest = yearData.valueEndOfYear - totalAmountInvested;
 
           return (
             <tr key={yearData.year}>
